@@ -16,7 +16,19 @@ function Game({ score, bestScore, setScore, setBestScore }) {
                 const res = await fetch("https://api.jikan.moe/v4/anime/40748/characters");
                 const data = await res.json();
                 const sorted = data.data.sort((a, b) => b.favorites - a.favorites);
-                const top12 = sorted.slice(0,12);
+                const top12 = sorted.slice(0, 12).map((item) => {
+                    const nameParts = item.character.name.split(", "); // ["Gojo", "Satoru"]
+                    const properName =
+                        nameParts.length === 2 ? `${nameParts[1]} ${nameParts[0]}` : item.character.name;
+
+                    return {
+                        id: item.character.mal_id,
+                        name: properName,
+                        img: item.character.images.jpg.image_url,
+                        favorites: item.favorites
+                    };
+                });
+
                 console.log(top12);
                 setCards(top12);
             } catch(err) {
@@ -59,9 +71,9 @@ function Game({ score, bestScore, setScore, setBestScore }) {
     return (
         <>
             {
-                cards.map((card) => (
-                    <Card key={card.id} handleCardClick={() => handleCardClick(card)} card={card.name}></Card>
-                ))
+                // cards.map((card) => (
+                //     <Card key={card.id} handleCardClick={() => handleCardClick(card)} card={card.name}></Card>
+                // ))
             }
         </>
     )

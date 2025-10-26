@@ -13,7 +13,7 @@ function Game({ score, bestScore, setScore, setBestScore }) {
     useEffect(() => {
         async function fetchCharacters() {
             try {
-                const res = await fetch("https://api.jikan.moe/v4/anime/40748/characters");
+                const res = await fetch("https://api.jikan.moe/v4/anime/58514/characters");
                 const data = await res.json();
                 const sorted = data.data.sort((a, b) => b.favorites - a.favorites);
                 const top12 = sorted.slice(0, 12).map((item) => {

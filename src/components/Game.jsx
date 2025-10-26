@@ -69,22 +69,23 @@ function Game({ score, bestScore, setScore, setBestScore }) {
     }
 
     return (
-        <>
+        <div id={"game"}>
             {
-                // cards.map((card) => (
-                //     <Card key={card.id} handleCardClick={() => handleCardClick(card)} card={card.name}></Card>
-                // ))
+                cards.map((card) => (
+                    <Card key={card.id} handleCardClick={() => handleCardClick(card)} card={card}></Card>
+                ))
             }
-        </>
+        </div>
     )
 }
 
 function Card( {handleCardClick, card} ) {
 
     return (
-        <>
-            <div onClick={handleCardClick}>{card}</div>
-        </>
+        <div className={"card"} onClick={handleCardClick}>
+            <img alt={card.name} src={card.img} className={"card-img"}/>
+            <p>{card.name}</p>
+        </div>
     )
 }
 

@@ -1,8 +1,9 @@
 function Header({ score, bestScore }) {
     return (
         <>
-            <div>
-                Score: {score} | Best Score: {bestScore}
+            <div id={"header"}>
+                <div id={"logo"}>Memory Game</div>
+                <div id={"scores"}>Score: {score} | Best Score: {bestScore}</div>
             </div>
         </>
     )
